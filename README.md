@@ -1,4 +1,4 @@
-# Paper sources of master degree in Hnayang Univercity
+# Paper sources of master degree in Hanyang University
 
 ## 1. Data definition
 
