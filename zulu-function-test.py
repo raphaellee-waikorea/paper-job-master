@@ -7,9 +7,9 @@ def asset_allocation(p_args):
     l_dict_asset_count = p_args['asset_count']
     l_dict_asset_ratio = p_args['asset_ratio']
     l_total_amount = p_args['asset_amount']
-    l_asset_code = dict_params['asset_list']
-    l_balance_code = dict_params['balance_code']
-    l_std_date = dict_params['std_date']
+    l_asset_code = p_args['asset_list']
+    l_balance_code = p_args['balance_code']
+    l_std_date = p_args['std_date']
 
     sum_to_modify_amount = 0
 

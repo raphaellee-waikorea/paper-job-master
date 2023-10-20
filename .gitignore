@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 create-base-file.ipynb
 references*
+data/**/*.csv
