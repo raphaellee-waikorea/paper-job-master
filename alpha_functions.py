@@ -145,10 +145,10 @@ class StockEnvTrade(gym.Env):
         self.np_random, seed = gym.utils.seeding.np_random(seed)
         return [seed]
 
+
 def train(algo, policy, env_train, timesteps, seed=None, save=True):
     import stable_baselines3
     import time
-
     start = time.time()
 
     if algo == "A2C":
@@ -237,6 +237,9 @@ def execute_daily(p_args):
     import stable_baselines3
     import stable_baselines3.common.vec_env
 
+    import time
+    start = time.time()
+
     l_dataframe = p_args['table']
     l_rebalance_count = p_args['rebalance_count']
     l_std_date = p_args['std_date']
@@ -247,7 +250,8 @@ def execute_daily(p_args):
     l_file_name = p_args['file_name']
 
     if os.path.exists(l_file_name):
-        print('Skipped!\t', l_std_date)
+        end = time.time()
+        print('Skipped!\t', l_std_date, '\tElapsed time: ', int((end - start) / 60 * 10000) / 10000, '\tminutes\n')
     else:
         df_train = l_dataframe.head(450)
         df_valid = l_dataframe.tail(40)
@@ -290,4 +294,5 @@ def execute_daily(p_args):
         df_port_to_append['기준일자'] = l_std_date
         
         df_port_to_append.to_csv(l_file_name, index=None)
-        print('Complete!\t', l_std_date, flush=True)
+        end = time.time()
+        print('Complete!\t', l_std_date, '\tElapsed time: ', int((end - start) / 60 * 10000) / 10000, '\tminutes', flush=True)
