@@ -1,5 +1,6 @@
 import gym
 import gym.utils
+import gym.utils.seeding
 
 class StockEnvTrade(gym.Env):
 
@@ -152,15 +153,15 @@ def train(algo, policy, env_train, timesteps, seed=None, save=True):
     start = time.time()
 
     if algo == "A2C":
-        model = stable_baselines3.A2C(policy, env_train, verbose=0, seed=seed)
+        model = stable_baselines3.A2C(policy, env_train, verbose=0)
     elif algo == "TD3":
-        model = stable_baselines3.TD3(policy, env_train, verbose=0, seed=seed)
+        model = stable_baselines3.TD3(policy, env_train, verbose=0)
     elif algo == "PPO":
-        model = stable_baselines3.PPO(policy, env_train, verbose=0, seed=seed)
+        model = stable_baselines3.PPO(policy, env_train, verbose=0)
     elif algo == "DDPG":
-        model = stable_baselines3.DDPG(policy, env_train, verbose=0, seed=seed)
+        model = stable_baselines3.DDPG(policy, env_train, verbose=0)
     elif algo == "SAC":
-        model = stable_baselines3.SAC(policy, env_train, verbose=0, seed=seed)    
+        model = stable_baselines3.SAC(policy, env_train, verbose=0)
 
     model.learn(total_timesteps=timesteps)
     end = time.time()
