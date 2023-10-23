@@ -147,7 +147,7 @@ class StockEnvTrade(gym.Env):
         return [seed]
 
 
-def train(algo, policy, env_train, timesteps, seed=None, save=True):
+def train(p_date, algo, policy, env_train, timesteps, seed=None, save=True):
     import stable_baselines3
     import time
     start = time.time()
@@ -167,7 +167,7 @@ def train(algo, policy, env_train, timesteps, seed=None, save=True):
     end = time.time()
     if save == True:
         model.save("results/" + algo + "_" + str(timesteps) + "_model")
-    # print("Training time: ", (end - start) / 60, " minutes", flush=True)
+    print(p_date, "Training time: ", (end - start) / 60, " minutes", flush=True)
     return model
 
 
@@ -271,7 +271,7 @@ def execute_daily(p_args):
             # print('강화학습 시작', l_std_date, flush=True)
 
             train_env = stable_baselines3.common.vec_env.DummyVecEnv([lambda: StockEnvTrade(df=df_train, list_tickers=l_codes)])
-            model = train(l_model, l_policy, train_env, l_timesteps, seed=sequantial_seed, save=False)
+            model = train(l_std_date, l_model, l_policy, train_env, l_timesteps, seed=sequantial_seed, save=False)
 
             test_env = stable_baselines3.common.vec_env.DummyVecEnv([lambda: StockEnvTrade(df=df_valid, list_tickers=l_codes)])
             test_obs = test_env.reset()
