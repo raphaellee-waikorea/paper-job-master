@@ -280,10 +280,10 @@ def execute_daily(p_args):
 
             check = numpy.sum(portfolio_weights_a2c[loop_count])
             sequantial_seed += 1
+            loop_count += 1
+
             if check != valid_length:
                 continue
-
-            loop_count += 1
         # print('강화학습 끝', l_std_date, flush=True)
         ### 강화학습 알고리즘 적용 끝 ###
 
